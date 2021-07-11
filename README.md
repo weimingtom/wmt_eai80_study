@@ -1,6 +1,9 @@
 # wmt_eai80_study
 My EAI80 Study
 
+## SDK  
+* https://github.com/BPI-SINOVOIP/BPI-EAI80-bsp  
+
 ## Ref  
 * http://forum.banana-pi.org/t/bpi-eai80-aiot-board-eaiseries-sdk-usergride/11573  
 * http://wiki.banana-pi.org/BPI-EAI80_AIoT_board  
