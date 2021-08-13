@@ -36,3 +36,12 @@ bpi-eai80似乎是基于格力的F6721B系列芯片（可能是内部的名称�
 就是扩展了SDRAM和Flash，应该可以用stm32f446代替，或者用扩展SDRAM和Flash的  
 stm32h750来做相似的事情，例如语音识别、计算机视觉、物体检测、vSLAM、边缘计算等  
 
+## SDRAM烧录（掉电丢失）  
+我跑通了香蕉派EAI80如何直接在Keil 5（MDK5）里面烧录程序了（之前只是跑通了uGelisFlash_f6721b的烧录）。  
+实际上准确来说，《4.EAISeries_SDK_UserGuide》里面提到的Keil烧录方法是SDRAM烧录，掉电会丢失，  
+不同于uGelisFlash，uGelisFlash那个烧录是SPI Flash，掉电后不会丢失的。如果理解这一点，  
+那么《4.EAISeries_SDK_UserGuide》里面所说的烧录方法就很容易做到了，就是不要勾选Reset and Run，  
+也不要勾选Debug标签里面的Reset after Connect，这样CPU就不会重新加载SPI Flash里面的程序（防止冲走SDRAM的内容），  
+然后点击Start/Stop Debug Session(F5)按钮，执行Dbg_Init.ini，把PC寄存器指向SDRAM的程序。然后再点击一下全速执行按钮即可。  
+这种临时烧录方式有点类似F1C100S的内存执行方式，掉电就会丢失程序。有些人确实喜欢这种方式，  
+通过J-Flash的命令来手工执行程序，就像这里的所说的Dbg_Init.ini  
