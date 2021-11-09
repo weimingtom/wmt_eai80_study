@@ -73,10 +73,11 @@ M2M (A33&R16) 使用 20PIN MIPI 接口
 * 针序（接线方法）：  
 https://github.com/weimingtom/wmt_eai80_study/blob/master/bpi_7inch_lcd_rgb.txt  
 * EAI80的屏线接口  
+注：当时测试这个屏时，测试的次序是：先接VCC, GND, VOUT_DE~VOUT_CLK测试背光问题；然后再接VOUT_R7~VOUT_R3测试红色。最后再试其他脚  
+屏线反接不会烧，不知道为什么（可能电压不高的缘故）  
 https://github.com/weimingtom/wmt_eai80_study/blob/master/04_eai80.jpg  
 * 7寸屏幕的屏线接口  
 https://github.com/weimingtom/wmt_eai80_study/blob/master/05_bpi7inch_rgb.jpg  
-
 
 ## 全志 BPI-M64驱动mipi屏（480x1280分辨率）  
 https://blog.csdn.net/babyshan1/article/details/86980629  
