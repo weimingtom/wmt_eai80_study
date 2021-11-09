@@ -54,6 +54,10 @@ stm32h750来做相似的事情，例如语音识别、计算机视觉、物体�
 多出来的41脚和42脚（A和B）不是在屏线上，而是在接口底座上，不用管的  
 * 针序（接线方法）：  
 https://github.com/weimingtom/wmt_eai80_study/blob/master/alientek_4.3inch_rgb_lcd.txt  
+* EAI80的屏线接口  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/02_eai80_screen_interface.jpg  
+* 4.3寸屏幕的屏线接口  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/03_lcd43.jpg  
 
 ## 驱动BPI的7寸mipi屏（800 x 480分辨率）
 有三种屏线接口：mipi 40pin, mipi 20pin, rgb 40pin。
@@ -68,6 +72,11 @@ M2M (A33&R16) 使用 20PIN MIPI 接口
 ```
 * 针序（接线方法）：  
 https://github.com/weimingtom/wmt_eai80_study/blob/master/bpi_7inch_lcd_rgb.txt  
+* EAI80的屏线接口  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/04_eai80.jpg  
+* 7寸屏幕的屏线接口  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/05_bpi7inch_rgb.jpg  
+
 
 ## 全志 BPI-M64驱动mipi屏（480x1280分辨率）  
 https://blog.csdn.net/babyshan1/article/details/86980629  
