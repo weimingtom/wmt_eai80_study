@@ -62,6 +62,8 @@ https://github.com/weimingtom/wmt_eai80_study/blob/master/03_lcd43.jpg
 ## 驱动BPI的7寸mipi屏（800 x 480分辨率）
 有三种屏线接口：mipi 40pin, mipi 20pin, rgb 40pin。
 这里使用rgb 40pin的屏线接口  
+* see, 7.0 LCD touch panel  
+https://wiki.banana-pi.org/7.0_LCD_touch_panel  
 ```
 香蕉派 Banana PI 七寸LCD触摸屏 ,支持 BPI 全志系列主板  
 支持 ： BPI M1/M1+/M3/M2 Ultra/M2 Berry/M64/M2M (A33&R16)  
