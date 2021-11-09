@@ -1,0 +1,115 @@
+P数字按照从上到下交错z排列（同转排针后的转接板丝印）
+请勿连接附近的usb-c口供电打日志，会导致屏幕被干扰。用jlink四脚供电（板的另一头）
+
+EAI80板排针连接器（转40p排针）-倒数在转接板的丝印<->香蕉派7寸屏RGB接口（转40p排针，转接板丝印）
+
+P01(VCC)-倒数40脚<->P01(IPSOUT)
+P03(VCC)-倒数38脚<->P12(LCD0-IO2)
+P05(GND)-倒数36脚<->P05(GND)
+
+
+P15(VOUT_B3)-倒数26脚<->P15(LCD0-D3)
+P17(VOUT_B4)-倒数24脚<->P17(LCD0-D4)
+P19(VOUT_B5)-倒数22脚<->P19(LCD0-D5)
+P21(VOUT_B6)-倒数20脚<->P21(LCD0-D6)
+P23(VOUT_B7)-倒数18脚<->P23(LCD0-D7)
+
+P29(VOUT_G2)-倒数12脚<->P29(LCD0-D10)
+P31(VOUT_G3)-倒数10脚<->P31(LCD0-D11)
+P33(VOUT_G4)-倒数08脚<->P33(LCD0-D12)
+P35(VOUT_G5)-倒数06脚<->P35(LCD0-D13)
+P37(VOUT_G6)-倒数04脚<->P37(LCD0-D14)
+P39(VOUT_G7)-倒数02脚<->P39(LCD0-D15)
+
+
+P34(VOUT_R3)-倒数07脚<->P34(LCD0_D19)
+P32(VOUT_R4)-倒数09脚<->P32(LCD0_D20)
+P30(VOUT_R5)-倒数11脚<->P30(LCD0_D21)
+P28(VOUT_R6)-倒数13脚<->P28(LCD0_D22)
+P26(VOUT_R7)-倒数15脚<->P26(LCD0_D23)
+
+
+P22(VOUT_CLK)-倒数19脚<->P22(LCD0_CLK)
+P20(LCD_RST)-倒数21脚<->P20(LCD0_CS)
+P18(VOUT_HSYNC)-倒数23脚<->P18(LCD0_HSYNC)
+P16(VOUT_VSYNC)-倒数25脚<->P16(LCD0_VSYNC)
+P14(VOUT_DE)-倒数27脚<->P14(LCD0_DE)
+
+--------
+
+EAI排线连接器对应（按照排线从上而下是上下次序，排针是z序倒序从右到左）：04_eai80.jpg
+bpi 7寸屏对应（按照排线从上而下是上下次序，排针是z序从右到左）：05_bpi7inch_rgb.jpg
+
+（左屏线，两端同面，接开发板
+右屏线，两端反面，接7寸屏）
+
+
+----------------------
+
+（左屏线，同面，接开发板
+右屏线，同面，接4.3寸屏）
+
+
+--------
+
+j-link ob发热严重
+
+
+---------
+测试程序
+BPI-EAI80-bsp-1.0_v2\ugelis\kelis_example\app\ui\mdk\ui_demo.uvprojx
+
+
+--------
+
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\app\helloworld\main.c
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\app\ui\main.c
+
+
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\app\ui\ui\ui.h
+
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\driver_example\touchscreen\lcd\draw.h
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\driver_example\ASR_LCD\ui\ui.h
+
+
+fromelf.exe --bin -o "@L.bin" "#L"
+
+need copy flm to
+BPI-EAI80-bsp-1.0\ugelis\tools\keil
+E:\Keil_v5\ARM\Flash
+
+
+--------------
+通过MDK5方法烧录：
+
+
+点Download烧录（实际上烧录到SDRAM中，而非SPI Flash里面，掉电会丢失），然后由于没有勾选Reset，CPU不会加载SPI Flash里面的程序，所以此时点击Start/Stop Debug Session(F5)按钮，会执行Dbg_Init.ini的命令，然后就能执行到SDRAM里面的代码了
+
+按Reset按钮，重新加载SPI Flash里面的程序，SDRAM里面的程序就会丢失
+
+see 4.EAISeries_SDK_UserGuide.pdf, 第23页
+
+
+---------------------
+通过uGelisFlash.exe方法烧录
+
+0) 解压BPI-EAI80-bsp-1.0.zip，安装Keil.EAISeries_DFP.1.4.1.pack
+1) 用MDK5打开BPI-EAI80-bsp-1.0\ugelis\kelis_example\app\helloworld\mdk\ugelis_demo.uvprojx
+2) 在Options对话框中User标签中加入After Build: 
+fromelf.exe --bin -o "@L.bin" "#L"
+并且勾选
+3) 编译MDK5工程
+4) 打开BPI-EAI80-bsp-1.0\ugelis\tools\uGelisFlash_f6721b\uGelisFlash.exe
+右键browser选择boot1==images/boot1_1.bin
+右键browser选择system==ugelis_demo.bin（前面fromelf转换的bin文件）
+取消勾选其他分区如body_weights，只保留前面的info、boot1和system这三个分区
+5) 烧写：连接j-link ob，Flash Size选择32M，模式选择USB(JLink)，然后按右下角的Start按钮
+6) 串口查看：连接usb-c口，putty波特率19200，循环输出SDRAM BringUp:Hello World!
+7) 不需要拔掉usb线和jlinkob线，以后编译bin后只要烧写最后的分区system分区即可（usb-c的串口会提示进入JLinkFlashLoader），然后按reset按钮重新启动系统
+
+--------------
+
+BPI-EAI80-bsp-1.0\ugelis\kelis_example\app\helloworld\mdk
+ 
+
+
