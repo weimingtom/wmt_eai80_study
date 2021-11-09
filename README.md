@@ -46,13 +46,28 @@ stm32h750来做相似的事情，例如语音识别、计算机视觉、物体�
 这种临时烧录方式有点类似F1C100S的内存执行方式，掉电就会丢失程序。有些人确实喜欢这种方式，  
 通过J-Flash的命令来手工执行程序，就像这里的所说的Dbg_Init.ini  
 
-## 驱动正点原子屏480x272  
+## 驱动正点原子4.3寸屏（480x272分辨率）  
 昨天晚上我终于把EAI80的UI工程（实际上是LCD显示示例）跑通了，如图，驱动4.3寸正点原子屏（40pin，480x272分辨率），  
 用了两个屏线转接板和大量杜邦线，没接触摸脚，只接了RGB线，剩下的悬空，屏幕的BL脚接在高电平或者EAI80的LCD_PWREN。  
 我没有用官方的7寸屏，因为不知道什么原因失败了。另外这个板接屏幕时不可以通过USB-C线供电（原本是用于串口调试输出），  
 会导致屏幕输出发生干扰现象和变色，原因不明。原理图左图开发板右图正点原子屏，都是40针，  
 多出来的41脚和42脚（A和B）不是在屏线上，而是在接口底座上，不用管的  
-(TODO:整理针序）  
+* 针序（接线方法）：  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/alientek_4.3inch_rgb_lcd.txt  
+
+## 驱动BPI的7寸mipi屏（800 x 480分辨率）
+有三种屏线接口：mipi 40pin, mipi 20pin, rgb 40pin。
+这里使用rgb 40pin的屏线接口  
+```
+香蕉派 Banana PI 七寸LCD触摸屏 ,支持 BPI 全志系列主板  
+支持 ： BPI M1/M1+/M3/M2 Ultra/M2 Berry/M64/M2M (A33&R16)  
+PS：M1/M1+ 使用 RGB 接口 ，   
+M3/M2 Ultra/M64/M2 Berry  使用40PIN MIPI 接口 ，   
+M2M (A33&R16) 使用 20PIN MIPI 接口  
+（注：这是淘宝商店的说法，可能不准确）  
+```
+* 针序（接线方法）：  
+https://github.com/weimingtom/wmt_eai80_study/blob/master/bpi_7inch_lcd_rgb.txt  
 
 ## 全志 BPI-M64驱动mipi屏（480x1280分辨率）  
 https://blog.csdn.net/babyshan1/article/details/86980629  
