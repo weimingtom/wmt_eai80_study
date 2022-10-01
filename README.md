@@ -83,3 +83,8 @@ https://github.com/weimingtom/wmt_eai80_study/blob/master/05_bpi7inch_rgb.jpg
 
 ## 全志 BPI-M64驱动mipi屏（480x1280分辨率）  
 https://blog.csdn.net/babyshan1/article/details/86980629  
+
+## 屏幕测试程序, for STM32F429IGT6  
+实验62 综合测试实验-429核心板测试程序.rar  
+实验62 综合测试实验-429核心板测试程序_rom.rar  
+STM32F429IGT6核心板_A1型_源地  
